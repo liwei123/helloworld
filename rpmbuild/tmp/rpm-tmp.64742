@@ -1,0 +1,44 @@
+#!/bin/sh
+
+  RPM_OPT_FLAGS="-O2"
+  export RPM_OPT_FLAGS
+  RPM_BUILD_ROOT="/Users/chenliwei/RubymineProjects/helloworld/rpmbuild/tmp/helloworld-root"
+  export RPM_BUILD_ROOT
+  
+  unset PERL_MM_OPT || :
+  LC_ALL=C
+  export LC_ALL
+  LANG=C
+  export LANG
+  unset DISPLAY || :
+  unset LINGUAS || :
+  unset LANGUAGE || :
+  unset LC_MESSAGES || :
+  
+  set -x
+  umask 022
+  cd "/Users/chenliwei/RubymineProjects/helloworld/rpmbuild/BUILD"
+cd 'helloworld-1.1'
+
+  CFLAGS="${CFLAGS:--O2}" ; export CFLAGS ; 
+  CXXFLAGS="${CXXFLAGS:--O2}" ; export CXXFLAGS ; 
+  FFLAGS="${FFLAGS:--O2}" ; export FFLAGS ; 
+  ./configure --host=x86_64-apple-darwin14.3.0 --build=x86_64-apple-darwin14.3.0 \
+	--target=x86_64-apple-darwin \
+	--program-prefix= \
+ 	--prefix=/usr/local \
+	--exec-prefix=/usr/local \
+	--bindir=/usr/local/bin \
+	--sbindir=/usr/local/sbin \
+	--sysconfdir=/usr/local/etc \
+	--datadir=/usr/local/share \
+	--includedir=/usr/local/include \
+	--libdir=/usr/local/lib \
+	--libexecdir=/usr/local/libexec \
+	--localstatedir=/usr/local/var \
+	--sharedstatedir=/usr/local/com \
+	--mandir=/usr/local/share/man \
+	--infodir=/usr/local/share/info
+make -j4
+
+exit 0

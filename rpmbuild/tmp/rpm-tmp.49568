@@ -1,0 +1,33 @@
+#!/bin/sh
+
+  RPM_OPT_FLAGS="-O2"
+  export RPM_OPT_FLAGS
+  RPM_BUILD_ROOT="/Users/chenliwei/RubymineProjects/helloworld/rpmbuild/tmp/helloworld-root"
+  export RPM_BUILD_ROOT
+  
+  unset PERL_MM_OPT || :
+  LC_ALL=C
+  export LC_ALL
+  LANG=C
+  export LANG
+  unset DISPLAY || :
+  unset LINGUAS || :
+  unset LANGUAGE || :
+  unset LC_MESSAGES || :
+  
+  set -x
+  umask 022
+  cd "/Users/chenliwei/RubymineProjects/helloworld/rpmbuild/BUILD"
+/bin/rm -rf '/Users/chenliwei/RubymineProjects/helloworld/rpmbuild/tmp/helloworld-root'; /bin/mkdir -p '/Users/chenliwei/RubymineProjects/helloworld/rpmbuild/tmp/helloworld-root'
+cd 'helloworld-1.1'
+
+make install DESTDIR=/Users/chenliwei/RubymineProjects/helloworld/rpmbuild/tmp/helloworld-root
+rm -rf /Users/chenliwei/RubymineProjects/helloworld/rpmbuild/tmp/helloworld-root
+mkdir -p /Users/chenliwei/RubymineProjects/helloworld/rpmbuild/tmp/helloworld-root/usr/local/bin
+install -d /Users/chenliwei/RubymineProjects/helloworld/rpmbuild/tmp/helloworld-root/usr/local/bin
+ln -s /Users/chenliwei/RubymineProjects/helloworld/rpmbuild/tmp/helloworld-root/usr/local/bin
+
+
+
+
+exit 0
